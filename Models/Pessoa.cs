@@ -3,7 +3,7 @@ using MyValidations;
 
 namespace Models
 {
-    public class Pessoa
+    public class Pessoa : RespostaHttp
     {
         [Key]
         public int Id { get; set; }

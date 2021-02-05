@@ -1,0 +1,9 @@
+# as pastas completas
+bin/
+obj/
+# pastas ocultas também
+.vscode/
+.git/
+# todos com a extensão abaixo
+*.dll
+*.pdb
