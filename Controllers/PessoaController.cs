@@ -5,6 +5,7 @@ using Data;
 using System.Linq;
 using MyValidations;
 using System;
+using Microsoft.Extensions.Logging;
 
 namespace Controllers
 {
@@ -12,16 +13,21 @@ namespace Controllers
     [Route("[controller]")]
     public class PessoaController : ControllerBase
     {
+        private readonly ILogger<PessoaController> _logger;
         private DataContext context { get; set; }
-        public PessoaController(DataContext context)
+        public PessoaController(DataContext context, ILogger<PessoaController> logger)
         {
             this.context = context;
+            _logger = logger;
+            _logger.LogDebug(1, "NLog injected into HomeController");
         }
 
-        // PARTE 1 // https://medium.com/@gedanmagalhaes/criando-uma-api-rest-com-asp-net-core-3-1-entity-framework-mysql-423c00e3b58e
-        // PARTE 2 // https://medium.com/@gedanmagalhaes/criando-uma-api-rest-com-asp-net-core-3-1-entity-framework-mysql-parte-2-e969e82e5d2f
-
-        // EXEMPLO DO POST: https://github.com/GedanMagal/Api-Ef/blob/master/Controllers/ProductController.cs
+        public IActionResult Index()
+        {
+            _logger.LogInformation("Hello, this is the index!");
+            // return View();
+            return Ok();
+        }
         
         [HttpGet]
         public IActionResult Get()
@@ -52,14 +58,9 @@ namespace Controllers
         {
             if (ModelState.IsValid)
             {
-                // Pessoa aux = new Pessoa { Id = p.Id, Cpf = p.Cpf, DataNascimento = p.DataNascimento, Sexo = p.Sexo };
-                // var pessoa = context.Pessoa.Where(link => link.Id == p.Id).FirstOrDefault<Pessoa>();
                 var pessoa = context.Pessoa.Where(link => link.Cpf == p.Cpf).FirstOrDefault<Pessoa>();
                 if (pessoa != null)
                 {
-                    // pessoa.Nome = p.Nome;
-                    // if (p.Id > 0)
-                    //     pessoa.Id = p.Id;
                     if (p.Nome != null)
                         pessoa.Nome = p.Nome;
                     if (p.Cpf != null)
@@ -72,8 +73,24 @@ namespace Controllers
                     return Ok(pessoa);
                 }
                 else
-                    // return NotFound(pessoa.MensagemErro); // SE NÃO ENCONTRADO    
+                // return NotFound(pessoa.MensagemErro); // SE NÃO ENCONTRADO    
+                {
+                    var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+                    try
+                    {
+                        logger.Debug("a pessoa com CPF número " + p.Cpf + " NÃO ENCONTRADA PARA ATUALIZAR SEUS DADOS");                        
+                    }
+                    catch (Exception exception)
+                    {                        
+                        logger.Error(exception, "ALGUMA EXCEÇÃO ACONTECEU E NÃO FOI POSSIVEL GERAR LOG.");
+                        throw;
+                    }
+                    finally
+                    {
+                        NLog.LogManager.Shutdown();
+                    }
                     return NotFound("NÃO ENCONTRADO");
+                }
             }
             else
                 return BadRequest(ModelState);
@@ -92,7 +109,23 @@ namespace Controllers
                 return Ok(pessoa);
             }
             else
+            {
+                var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+                try
+                {
+                    logger.Debug("CPF " + cpf + " NÃO ENCONTRADO PARA EXCLUIR");                        
+                }
+                catch (Exception exception)
+                {                        
+                    logger.Error(exception, "ALGUMA EXCEÇÃO ACONTECEU E NÃO FOI POSSIVEL GERAR LOG.");
+                    throw;
+                }
+                finally
+                {
+                    NLog.LogManager.Shutdown();
+                }
                 return NotFound("NÃO ENCONTRADO");
+            }
         }
 
         [HttpGet("{cpf}")]
@@ -104,7 +137,23 @@ namespace Controllers
             if (pessoa != null)
                 return Ok(pessoa);
             else
+            {
+                var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
+                try
+                {
+                    logger.Debug("CPF " + cpf + " NÃO ENCONTRADO");                        
+                }
+                catch (Exception exception)
+                {                        
+                    logger.Error(exception, "ALGUMA EXCEÇÃO ACONTECEU E NÃO FOI POSSIVEL GERAR LOG.");
+                    throw;
+                }
+                finally
+                {
+                    NLog.LogManager.Shutdown();
+                }
                 return NotFound("NÃO ENCONTRADO");
+            }
         }
     }
 }
