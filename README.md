@@ -13,7 +13,7 @@ Dependências:
 
     dotnet add package NLog.Web.AspNetCore --version 4.9.0
     
-Projeto de aprendizado para uma webapi com Entity Framework usando MySql, C# e .NET baseado nos seguintes tuturiais:
+Projeto de aprendizado para uma webapi com Entity Framework usando MySql, C#, .NET e NLog baseado nos seguintes tuturiais:
 
 parte 1: https://medium.com/@gedanmagalhaes/criando-uma-api-rest-com-asp-net-core-3-1-entity-framework-mysql-423c00e3b58e
 
