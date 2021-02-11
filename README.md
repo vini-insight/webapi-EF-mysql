@@ -1,5 +1,5 @@
 # webapi-EF-mysql
-webapi-EF-mysql
+webapi-EF-mysql-NLog
 
 Dependências:
 
