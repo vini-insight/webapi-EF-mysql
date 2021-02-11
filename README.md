@@ -1,4 +1,4 @@
-# webapi-EF-mysql
+# webapi-EF-mysql-NLog
 webapi-EF-mysql-NLog
 
 Dependências:
