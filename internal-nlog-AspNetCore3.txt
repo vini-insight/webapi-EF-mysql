@@ -142,3 +142,95 @@
 2021-02-10 12:00:41.1935 Info Logger has been closed down.
 2021-02-10 12:00:41.1935 Info AppDomain Shutting down. Logger closing...
 2021-02-10 12:00:41.1935 Info Logger has been shut down.
+2021-02-23 12:23:36.4150 Info Message Template Auto Format enabled
+2021-02-23 12:23:36.4391 Info Loading assembly: NLog.Web.AspNetCore
+2021-02-23 12:23:36.4869 Info Adding target FileTarget(Name=allfile)
+2021-02-23 12:23:36.5128 Info Found 24 configuration items
+2021-02-23 12:59:55.6459 Info Shutdown() called. Logger closing...
+2021-02-23 12:59:55.6459 Info Closing old configuration.
+2021-02-23 12:59:55.6588 Info Logger has been closed down.
+2021-02-23 12:59:55.6588 Info AppDomain Shutting down. Logger closing...
+2021-02-23 12:59:55.6588 Info Logger has been shut down.
+2021-02-23 13:00:30.5495 Info Message Template Auto Format enabled
+2021-02-23 13:00:30.5565 Info Loading assembly: NLog.Web.AspNetCore
+2021-02-23 13:00:30.6016 Info Adding target FileTarget(Name=allfile)
+2021-02-23 13:00:30.6268 Info Found 24 configuration items
+2021-02-23 13:00:31.5575 Info Shutdown() called. Logger closing...
+2021-02-23 13:00:31.5575 Info Closing old configuration.
+2021-02-23 13:00:31.5575 Info Logger has been closed down.
+2021-02-23 13:00:31.5575 Info AppDomain Shutting down. Logger closing...
+2021-02-23 13:00:31.5575 Info Logger has been shut down.
+2021-02-23 13:00:42.8295 Info Message Template Auto Format enabled
+2021-02-23 13:00:42.8363 Info Loading assembly: NLog.Web.AspNetCore
+2021-02-23 13:00:42.8788 Info Adding target FileTarget(Name=allfile)
+2021-02-23 13:00:42.9029 Info Found 24 configuration items
+2021-02-23 13:01:37.7534 Info Shutdown() called. Logger closing...
+2021-02-23 13:01:37.7534 Info Closing old configuration.
+2021-02-23 13:01:37.7613 Info Logger has been closed down.
+2021-02-23 13:01:37.7613 Info AppDomain Shutting down. Logger closing...
+2021-02-23 13:01:37.7613 Info Logger has been shut down.
+2021-02-23 13:02:08.8004 Info Message Template Auto Format enabled
+2021-02-23 13:02:08.8075 Info Loading assembly: NLog.Web.AspNetCore
+2021-02-23 13:02:08.8491 Info Adding target FileTarget(Name=allfile)
+2021-02-23 13:02:08.8734 Info Found 24 configuration items
+2021-02-23 13:06:14.6495 Info Shutdown() called. Logger closing...
+2021-02-23 13:06:14.6495 Info Closing old configuration.
+2021-02-23 13:06:14.6495 Info Logger has been closed down.
+2021-02-23 13:06:14.6495 Info AppDomain Shutting down. Logger closing...
+2021-02-23 13:06:14.6495 Info Logger has been shut down.
+2021-02-23 23:47:14.2755 Info Message Template Auto Format enabled
+2021-02-23 23:47:14.2817 Info Loading assembly: NLog.Web.AspNetCore
+2021-02-23 23:47:14.3214 Info Adding target FileTarget(Name=allfile)
+2021-02-23 23:47:14.3417 Info Found 24 configuration items
+2021-02-23 23:47:14.3417 Info Configuration initialized.
+2021-02-23 23:47:14.3417 Info NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c. File version: 4.6.7.10445. Product version: 4.6.7.
+2021-02-23 23:47:15.5773 Info AppDomain Shutting down. Logger closing...
+2021-02-23 23:47:15.5773 Info Logger has been shut down.
+2021-02-23 23:48:09.3885 Info Message Template Auto Format enabled
+2021-02-23 23:48:09.4133 Info Loading assembly: NLog.Web.AspNetCore
+2021-02-23 23:48:09.4793 Info Adding target FileTarget(Name=allfile)
+2021-02-23 23:48:09.5105 Info Found 24 configuration items
+2021-02-23 23:48:34.3695 Info Configuring from an XML element in F:\GitHub\EF\webapi-EF-mysql\bin\Debug\netcoreapp3.1\nlog.config...
+2021-02-23 23:48:34.3701 Info Message Template Auto Format enabled
+2021-02-23 23:48:34.3701 Info Loading assembly: NLog.Web.AspNetCore
+2021-02-23 23:48:34.3701 Info Adding target FileTarget(Name=allfile)
+2021-02-23 23:48:34.3701 Info Closing old configuration.
+2021-02-23 23:48:34.3701 Info Found 24 configuration items
+2021-02-23 23:48:34.3886 Info Shutdown() called. Logger closing...
+2021-02-23 23:48:34.3886 Info Closing old configuration.
+2021-02-23 23:48:34.3886 Info Logger has been closed down.
+2021-02-23 23:49:05.4147 Info Configuring from an XML element in F:\GitHub\EF\webapi-EF-mysql\bin\Debug\netcoreapp3.1\nlog.config...
+2021-02-23 23:49:05.4147 Info Message Template Auto Format enabled
+2021-02-23 23:49:05.4147 Info Loading assembly: NLog.Web.AspNetCore
+2021-02-23 23:49:05.4147 Info Adding target FileTarget(Name=allfile)
+2021-02-23 23:49:05.4177 Info Found 24 configuration items
+2021-02-23 23:49:05.4177 Info Shutdown() called. Logger closing...
+2021-02-23 23:49:05.4177 Info Closing old configuration.
+2021-02-23 23:49:05.4177 Info Logger has been closed down.
+2021-02-23 23:50:47.0965 Info Configuring from an XML element in F:\GitHub\EF\webapi-EF-mysql\bin\Debug\netcoreapp3.1\nlog.config...
+2021-02-23 23:50:47.0965 Info Message Template Auto Format enabled
+2021-02-23 23:50:47.0965 Info Loading assembly: NLog.Web.AspNetCore
+2021-02-23 23:50:47.0965 Info Adding target FileTarget(Name=allfile)
+2021-02-23 23:50:47.0965 Info Found 24 configuration items
+2021-02-23 23:50:47.0965 Info Shutdown() called. Logger closing...
+2021-02-23 23:50:47.1040 Info Closing old configuration.
+2021-02-23 23:50:47.1040 Info Logger has been closed down.
+2021-02-23 23:54:23.1473 Info Configuring from an XML element in F:\GitHub\EF\webapi-EF-mysql\bin\Debug\netcoreapp3.1\nlog.config...
+2021-02-23 23:54:23.1473 Info Message Template Auto Format enabled
+2021-02-23 23:54:23.1473 Info Loading assembly: NLog.Web.AspNetCore
+2021-02-23 23:54:23.1473 Info Adding target FileTarget(Name=allfile)
+2021-02-23 23:54:23.1473 Info Found 24 configuration items
+2021-02-23 23:54:23.1520 Info Shutdown() called. Logger closing...
+2021-02-23 23:54:23.1520 Info Closing old configuration.
+2021-02-23 23:54:23.1520 Info Logger has been closed down.
+2021-02-23 23:56:10.2553 Info AppDomain Shutting down. Logger closing...
+2021-02-23 23:56:10.2553 Info Logger has been shut down.
+2021-02-23 23:56:59.4117 Info Message Template Auto Format enabled
+2021-02-23 23:56:59.4194 Info Loading assembly: NLog.Web.AspNetCore
+2021-02-23 23:56:59.4646 Info Adding target FileTarget(Name=allfile)
+2021-02-23 23:56:59.4906 Info Found 24 configuration items
+2021-02-23 23:57:08.8774 Info Shutdown() called. Logger closing...
+2021-02-23 23:57:08.8774 Info Closing old configuration.
+2021-02-23 23:57:08.8872 Info Logger has been closed down.
+2021-02-23 23:57:08.8872 Info AppDomain Shutting down. Logger closing...
+2021-02-23 23:57:08.8872 Info Logger has been shut down.

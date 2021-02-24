@@ -25,3 +25,20 @@ EXEMPLO DELET E PUT: https://www.entityframeworktutorial.net/efcore/delete-data-
 
 Geração de Logs: https://github.com/NLog/NLog/wiki/Getting-started-with-ASP.NET-Core-3
 
+
+### PASSOS para ativar Entity Framework Core:
+
+para puxar os registros do banco de dados: ainda não temos nenhuma tabela criada. abrir o terminal do vscode e gerar nossa primeira Migration rodando o comando:
+
+(se já estiver com as migrations prontas basta pular esse passo)
+
+    dotnet ef migrations add PrimeiraMigration
+
+qualquer nome pode ser adicionado após o add. este comando gerara uma tabela no seu schema com o nome dado no DataContext, no caso a primeira tabela que criará será a de Pessoas pois foi a unica que mapeamos até o momento.
+
+depois insira o comando para criar as tabelas e também o banco de dados:
+
+    dotnet ef database update
+
+caso queira ver o processo de execução, basta rodar com o -v no final do comando
+

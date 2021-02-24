@@ -104,7 +104,7 @@ namespace Controllers
             var pessoa = context.Pessoa.Where(link => link.Cpf == cpf).FirstOrDefault<Pessoa>();
             if (pessoa != null)
             {
-                context.Pessoa.Remove(pessoa);            
+                context.Pessoa.Remove(pessoa);
                 context.SaveChanges();
                 return Ok(pessoa);
             }
