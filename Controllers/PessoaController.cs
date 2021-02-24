@@ -1,11 +1,11 @@
-using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using Models;
 using Data;
 using System.Linq;
 using MyValidations;
-using System;
 using Microsoft.Extensions.Logging;
+using webapi_EF_mysql.Data;
+using webapi_EF_mysql.Models;
 
 namespace Controllers
 {
@@ -14,10 +14,12 @@ namespace Controllers
     public class PessoaController : ControllerBase
     {
         private readonly ILogger<PessoaController> _logger;
-        private DataContext context { get; set; }
+        
+        private PessoaRepositorio pr { get; set; }
+        
         public PessoaController(DataContext context, ILogger<PessoaController> logger)
-        {
-            this.context = context;
+        {            
+            pr = new PessoaRepositorio(context);
             _logger = logger;
             _logger.LogDebug(1, "NLog injected into HomeController");
         }
@@ -32,63 +34,43 @@ namespace Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var pessoas = context.Pessoa;
-            if(context.Pessoa.Count() > 0)
+            var pessoas = PessoaRepositorio.GetListPessoa();
+            
+            if(pessoas.Count() > 0)
                 return Ok(pessoas);
             else
+            {
+                StaticNLog.GerarLog("a lista de pessoas está vazia");
                 return NotFound("LISTA VAZIA");
+            }
         }
 
         [HttpPost]
         public IActionResult Post(Pessoa p)
         {
 
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
-                context.Pessoa.Add(p);                
-                context.SaveChanges();                
-                return Ok(p);
+                return Ok(PessoaRepositorio.InserirNoBancoDados(p));
             }
             else
+            {
+                StaticNLog.GerarLog("aconteceu uma tentativa de gravar dados que não passou na validação");
                 return BadRequest(ModelState);
+            }
         }
 
         [HttpPut]
         public IActionResult Put(PessoaPut p)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
-                var pessoa = context.Pessoa.Where(link => link.Cpf == p.Cpf).FirstOrDefault<Pessoa>();
-                if (pessoa != null)
-                {
-                    if (p.Nome != null)
-                        pessoa.Nome = p.Nome;
-                    if (p.Cpf != null)
-                        pessoa.Cpf = p.Cpf;
-                    if (p.DataNascimento != null)
-                        pessoa.DataNascimento = p.DataNascimento;                
-                    if (p.Sexo != null)
-                        pessoa.Sexo = p.Sexo.ToUpper();
-                    context.SaveChanges();
+                var pessoa = PessoaRepositorio.AtualizarNoBancoDados(p);
+                if(pessoa != null)
                     return Ok(pessoa);
-                }
-                else
-                // return NotFound(pessoa.MensagemErro); // SE NÃO ENCONTRADO    
-                {
-                    var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
-                    try
-                    {
-                        logger.Debug("a pessoa com CPF número " + p.Cpf + " NÃO ENCONTRADA PARA ATUALIZAR SEUS DADOS");                        
-                    }
-                    catch (Exception exception)
-                    {                        
-                        logger.Error(exception, "ALGUMA EXCEÇÃO ACONTECEU E NÃO FOI POSSIVEL GERAR LOG.");
-                        throw;
-                    }
-                    finally
-                    {
-                        NLog.LogManager.Shutdown();
-                    }
+                else                
+                {                    
+                    StaticNLog.GerarLog("a pessoa com CPF número " + p.Cpf + " NÃO ENCONTRADA PARA ATUALIZAR SEUS DADOS");
                     return NotFound("NÃO ENCONTRADO");
                 }
             }
@@ -99,31 +81,14 @@ namespace Controllers
         [HttpDelete("{cpf}")]
         public IActionResult Delete(string cpf)
         {
-            if ( ! CpfString.Validar(cpf) )
-                return BadRequest("DIGITE APENAS OS NUMEROS, sem pontos, virugulas, traços, espaços nem letras");            
-            var pessoa = context.Pessoa.Where(link => link.Cpf == cpf).FirstOrDefault<Pessoa>();
-            if (pessoa != null)
-            {
-                context.Pessoa.Remove(pessoa);
-                context.SaveChanges();
+            if( ! CpfString.Validar(cpf) )
+                return BadRequest("DIGITE APENAS OS NUMEROS, sem pontos, virugulas, traços, espaços nem letras");                        
+            var pessoa = PessoaRepositorio.ApagarNoBancoDados(cpf);
+            if(pessoa != null)
                 return Ok(pessoa);
-            }
             else
             {
-                var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
-                try
-                {
-                    logger.Debug("CPF " + cpf + " NÃO ENCONTRADO PARA EXCLUIR");                        
-                }
-                catch (Exception exception)
-                {                        
-                    logger.Error(exception, "ALGUMA EXCEÇÃO ACONTECEU E NÃO FOI POSSIVEL GERAR LOG.");
-                    throw;
-                }
-                finally
-                {
-                    NLog.LogManager.Shutdown();
-                }
+                StaticNLog.GerarLog("CPF " + cpf + " NÃO ENCONTRADO PARA EXCLUIR DA BASE");
                 return NotFound("NÃO ENCONTRADO");
             }
         }
@@ -131,27 +96,14 @@ namespace Controllers
         [HttpGet("{cpf}")]
         public IActionResult GetSingle(string cpf)
         {   
-            if ( ! CpfString.Validar(cpf) )
+            if( ! CpfString.Validar(cpf) )
                 return BadRequest("DIGITE APENAS OS NUMEROS, sem pontos, virugulas, traços, espaços nem letras");            
-            var pessoa = context.Pessoa.Where(link => link.Cpf == cpf).FirstOrDefault<Pessoa>();
-            if (pessoa != null)
+            var pessoa = PessoaRepositorio.GetPessoa(cpf);
+            if(pessoa != null)
                 return Ok(pessoa);
             else
             {
-                var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
-                try
-                {
-                    logger.Debug("CPF " + cpf + " NÃO ENCONTRADO");                        
-                }
-                catch (Exception exception)
-                {                        
-                    logger.Error(exception, "ALGUMA EXCEÇÃO ACONTECEU E NÃO FOI POSSIVEL GERAR LOG.");
-                    throw;
-                }
-                finally
-                {
-                    NLog.LogManager.Shutdown();
-                }
+                StaticNLog.GerarLog("o CPF " + cpf + " NÃO ENCONTRADO NA BASE DE DADOS");
                 return NotFound("NÃO ENCONTRADO");
             }
         }
