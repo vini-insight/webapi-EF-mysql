@@ -7,3 +7,5 @@ obj/
 # todos com a extensão abaixo
 *.dll
 *.pdb
+# este arquivo do NLog na raiz do projeto
+internal-nlog-AspNetCore3.txt
