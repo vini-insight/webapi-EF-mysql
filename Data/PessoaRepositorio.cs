@@ -26,6 +26,7 @@ namespace webapi_EF_mysql.Data
 
         public static Pessoa InserirNoBancoDados(Pessoa p)
         {
+            p.Sexo = p.Sexo.ToUpper();
             _context.Pessoa.Add(p);
             _context.SaveChanges();
             return p;

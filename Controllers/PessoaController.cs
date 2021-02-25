@@ -34,8 +34,7 @@ namespace Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var pessoas = PessoaRepositorio.GetListPessoa();
-            
+            var pessoas = PessoaRepositorio.GetListPessoa();            
             if(pessoas.Count() > 0)
                 return Ok(pessoas);
             else
@@ -48,11 +47,8 @@ namespace Controllers
         [HttpPost]
         public IActionResult Post(Pessoa p)
         {
-
-            if(ModelState.IsValid)
-            {
-                return Ok(PessoaRepositorio.InserirNoBancoDados(p));
-            }
+            if(ModelState.IsValid)            
+                return Ok(PessoaRepositorio.InserirNoBancoDados(p));            
             else
             {
                 StaticNLog.GerarLog("aconteceu uma tentativa de gravar dados que não passou na validação");

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace webapi_EF_mysql.Migrations
 {
-    public partial class TerceiraMigration : Migration
+    public partial class QuartaMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

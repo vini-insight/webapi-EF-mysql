@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace webapi_EF_mysql.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210208192705_TerceiraMigration")]
-    partial class TerceiraMigration
+    [Migration("20210225151609_QuartaMigration")]
+    partial class QuartaMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
