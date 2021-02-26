@@ -18,8 +18,8 @@ namespace webapi_EF_mysql
             var logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
             try
             {
-                logger.Debug("init main");
-                logger.Debug("FUNFOU");
+                logger.Debug("Método Main(); da classe Program.cs foi inicializado");
+                logger.Debug("FUNFOU == funcionou !");
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception exception)

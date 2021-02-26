@@ -36,10 +36,13 @@ namespace Controllers
         {
             var pessoas = PessoaRepositorio.GetListPessoa();            
             if(pessoas.Count() > 0)
+            {
+                StaticNLog.GerarLogSucesso("Lista de Pessoas foi Retornada");
                 return Ok(pessoas);
+            }                
             else
             {
-                StaticNLog.GerarLog("a lista de pessoas está vazia");
+                StaticNLog.GerarLogInfo("a lista de pessoas está vazia");
                 return NotFound("LISTA VAZIA");
             }
         }
@@ -48,10 +51,13 @@ namespace Controllers
         public IActionResult Post(Pessoa p)
         {
             if(ModelState.IsValid)            
-                return Ok(PessoaRepositorio.InserirNoBancoDados(p));            
+            {
+                StaticNLog.GerarLogSucesso("Nova Pessoa foi Gravada no BD");
+                return Ok(PessoaRepositorio.InserirNoBancoDados(p));
+            }
             else
             {
-                StaticNLog.GerarLog("aconteceu uma tentativa de gravar dados que não passou na validação");
+                StaticNLog.GerarLogInfo("aconteceu uma tentativa de gravar dados que não passou na validação");
                 return BadRequest(ModelState);
             }
         }
@@ -63,10 +69,13 @@ namespace Controllers
             {
                 var pessoa = PessoaRepositorio.AtualizarNoBancoDados(p);
                 if(pessoa != null)
+                {
+                    StaticNLog.GerarLogSucesso("Pessoa foi Atualizada");
                     return Ok(pessoa);
+                }
                 else                
                 {                    
-                    StaticNLog.GerarLog("a pessoa com CPF número " + p.Cpf + " NÃO ENCONTRADA PARA ATUALIZAR SEUS DADOS");
+                    StaticNLog.GerarLogInfo("a pessoa com CPF número " + p.Cpf + " NÃO ENCONTRADA PARA ATUALIZAR SEUS DADOS");
                     return NotFound("NÃO ENCONTRADO");
                 }
             }
@@ -81,10 +90,13 @@ namespace Controllers
                 return BadRequest("DIGITE APENAS OS NUMEROS, sem pontos, virugulas, traços, espaços nem letras");                        
             var pessoa = PessoaRepositorio.ApagarNoBancoDados(cpf);
             if(pessoa != null)
+            {
+                StaticNLog.GerarLogSucesso("Pessoa foi Excluída");
                 return Ok(pessoa);
+            }
             else
             {
-                StaticNLog.GerarLog("CPF " + cpf + " NÃO ENCONTRADO PARA EXCLUIR DA BASE");
+                StaticNLog.GerarLogInfo("CPF " + cpf + " NÃO ENCONTRADO PARA EXCLUIR DA BASE");
                 return NotFound("NÃO ENCONTRADO");
             }
         }
@@ -96,10 +108,13 @@ namespace Controllers
                 return BadRequest("DIGITE APENAS OS NUMEROS, sem pontos, virugulas, traços, espaços nem letras");            
             var pessoa = PessoaRepositorio.GetPessoa(cpf);
             if(pessoa != null)
+            {
+                StaticNLog.GerarLogSucesso("Pessoa foi Retornada");
                 return Ok(pessoa);
+            }
             else
             {
-                StaticNLog.GerarLog("o CPF " + cpf + " NÃO ENCONTRADO NA BASE DE DADOS");
+                StaticNLog.GerarLogInfo("o CPF " + cpf + " NÃO ENCONTRADO NA BASE DE DADOS");
                 return NotFound("NÃO ENCONTRADO");
             }
         }

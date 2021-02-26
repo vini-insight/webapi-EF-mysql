@@ -12,7 +12,7 @@ namespace webapi_EF_mysql.Models
             logger = NLog.Web.NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();            
         }
         
-        public static void GerarLog(string log)
+        public static void GerarLogInfo(string log)
         {
             try
             {
@@ -23,10 +23,11 @@ namespace webapi_EF_mysql.Models
                 logger.Error(exception, "ALGUMA EXCEÇÃO ACONTECEU E NÃO FOI POSSIVEL GERAR LOG.");
                 throw;
             }
-            finally
-            {
-                NLog.LogManager.Shutdown();
-            }
+        }
+
+        public static void GerarLogSucesso(string log)
+        {
+            logger.Info(log);
         }
     }
 }

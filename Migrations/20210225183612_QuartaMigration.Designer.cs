@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace webapi_EF_mysql.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210225151609_QuartaMigration")]
+    [Migration("20210225183612_QuartaMigration")]
     partial class QuartaMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
