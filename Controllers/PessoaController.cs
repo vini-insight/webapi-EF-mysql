@@ -9,7 +9,7 @@ using webapi_EF_mysql.Models;
 
 namespace Controllers
 {
-    [Controller]
+    [ApiController] // PARA RODAR COM JSON NO POSTMAN
     [Route("[controller]")]
     public class PessoaController : ControllerBase
     {
@@ -19,7 +19,7 @@ namespace Controllers
         
         public PessoaController(DataContext context, ILogger<PessoaController> logger)
         {            
-            pr = new PessoaRepositorio(context);
+            pr = new PessoaRepositorio(context);    // TIRAR DÚVIDA SE É UMA BOA PRÁTICA AQUI (FALAR SOBRE INJEÇÃO DE DEPENDENCIA E LOCALIZAÇÃO NO PACOTE DO PROJETO)
             _logger = logger;
             _logger.LogDebug(1, "NLog injected into HomeController");
         }
